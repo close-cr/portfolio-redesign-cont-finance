@@ -1,8 +1,10 @@
+🇬🇧 [English](DESIGN.md) · 🇪🇸 Español
+
 # Rediseño de Cont Finance para crecer 100 veces
 
 Documento de diseño de sistemas sobre una aplicación real en producción: **Cont Finance**, plataforma web para contadores y despachos contables de Costa Rica que convierte facturas electrónicas en asientos contables, IVA y estados financieros. El ejercicio: **¿qué se rompe primero si el uso crece unas 100 veces, y qué conviene cambiar y cuándo?**
 
-Método: requisitos → estimación → arquitectura actual y puntos únicos de falla → propuesta → plan por fases con disparadores. Las cifras salen de `estimaciones.py` (todo lo no medido está declarado como supuesto) y de los límites documentados de la plataforma actual.
+Método: requisitos → estimación → arquitectura actual y puntos únicos de falla → propuesta → plan por fases con disparadores. Las cifras salen de `estimates.py` (todo lo no medido está declarado como supuesto) y de los límites documentados de la plataforma actual.
 
 > **Estado de los datos:** es un ejercicio de diseño. Todo lo que sigue son **estimaciones por arquitectura, no mediciones** del sistema real. La primera fase del plan es medir.
 
@@ -36,7 +38,7 @@ Método: requisitos → estimación → arquitectura actual y puntos únicos de 
 
 ## 3. Estimación
 
-Supuestos (editar en `estimaciones.py`; los tres escenarios también son supuestos): 40 facturas por cliente al mes, 150 KB de archivos y 5 KB en base por factura, 3 usuarios por despacho, pico = 3 × promedio, 10 % de facturas sin XML (necesitan IA).
+Supuestos (editar en `estimates.py`; los tres escenarios también son supuestos): 40 facturas por cliente al mes, 150 KB de archivos y 5 KB en base por factura, 3 usuarios por despacho, pico = 3 × promedio, 10 % de facturas sin XML (necesitan IA).
 
 | Magnitud | Escenario pequeño | Escenario medio | Escenario de diseño (×100) |
 |---|---|---|---|
@@ -176,14 +178,14 @@ Estrategia **cache-aside**. Se mide la tasa de aciertos antes de ampliarla; si e
 ## 8. Cómo reproducir las cifras
 
 ```bash
-python3 estimaciones.py
+python3 estimates.py
 ```
 
 Imprime la tabla de la sección 3. Cambiar `SUPUESTOS` o `ESCENARIOS` y volver a correr.
 
 ## 9. Experimentos con los supuestos
 
-Se corren con `python3 experimentos.py`. Qué conclusiones cambian al mover un supuesto (escenario de diseño ×100 salvo indicación):
+Se corren con `python3 experiments.py`. Qué conclusiones cambian al mover un supuesto (escenario de diseño ×100 salvo indicación):
 
 | Supuesto | Cron de Gmail, una sola corrida | Cron de Gmail, por despacho | Crecimiento de la base | Archivos nuevos |
 |---|---|---|---|---|
