@@ -180,3 +180,21 @@ python3 estimaciones.py
 ```
 
 Imprime la tabla de la sección 3. Cambiar `SUPUESTOS` o `ESCENARIOS` y volver a correr.
+
+## 9. Experimentos con los supuestos
+
+Se corren con `python3 experimentos.py`. Qué conclusiones cambian al mover un supuesto (escenario de diseño ×100 salvo indicación):
+
+| Supuesto | Cron de Gmail, una sola corrida | Cron de Gmail, por despacho | Crecimiento de la base | Archivos nuevos |
+|---|---|---|---|---|
+| Base: 40 facturas por cliente, 10 s por conexión | 3 333 s (excede) | 33 s (cabe) | 977 MB/mes (supera 512 MB) | 28,6 GB/mes |
+| 120 facturas por cliente | 3 333 s (excede) | 33 s (cabe) | **2 930 MB/mes** (supera) | 85,8 GB/mes |
+| 10 facturas por cliente | 3 333 s (excede) | 33 s (cabe) | **244 MB/mes (ya no supera)** | 7,2 GB/mes |
+| 60 s por conexión de Gmail | **20 000 s** (excede) | **200 s (cabe, pero con poco margen)** | 977 MB/mes | 28,6 GB/mes |
+
+**Qué aprendí:**
+
+- **La conclusión principal es robusta**: con cualquiera de los supuestos, el cron en una sola corrida excede el límite de 300 s y repartirlo por despacho lo resuelve. Esa decisión no depende de los números exactos.
+- **El tamaño de la base sí depende de los supuestos**: el «segundo problema» pasa de inexistente (10 facturas por cliente) a muy grave (120). Por eso la Fase 0 es medir el volumen real de facturas por cliente.
+- **El modelo es simple en un punto importante**: el tiempo del bot depende aquí del número de conexiones de Gmail, no del número de facturas de cada una. En la realidad, un cliente con muchas facturas tarda más. Es una simplificación que habría que medir.
+- Si cada conexión tarda 60 s, el trabajo por despacho (200 s) aún cabe, pero con un margen de apenas 100 s: en ese caso convendría partir también los despachos grandes en varios trabajos.
