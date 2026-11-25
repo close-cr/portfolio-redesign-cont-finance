@@ -1,5 +1,6 @@
 🇬🇧 English · 🇪🇸 [Español](README.es.md)
 
+🎬 **Video walkthrough (English, ~9 min) of all four portfolio projects:** [watch](https://github.com/close-cr/close-cr/blob/main/media/portfolio-walkthrough.mp4)
 # Redesigning a real accounting app to grow 100 times
 
 A systems-design case study on **Cont Finance**, a multi-office accounting web platform: what breaks first if usage grows about 100 times, what to change, and when.

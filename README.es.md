@@ -1,5 +1,6 @@
 🇬🇧 [English](README.md) · 🇪🇸 Español
 
+🎬 **Video (en inglés, ~9 min) que explica los cuatro proyectos del portafolio:** [verlo](https://github.com/close-cr/close-cr/blob/main/media/portfolio-walkthrough.mp4)
 # Rediseño de una app contable real para crecer 100 veces
 
 Caso de estudio de diseño de sistemas sobre **Cont Finance**, una plataforma web contable multi-despacho: qué se rompe primero si el uso crece unas 100 veces, qué cambiar y cuándo.
